@@ -13,6 +13,7 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
+        self.visited = False
 
     def draw(self, x1, y1, x2, y2):
         self._x1 = x1
@@ -36,9 +37,8 @@ class Cell:
         else:
             self._win.draw_line(Line(Point(self._x1, self._y2), Point(self._x2, self._y2)), "white")
 
-
     def draw_move(self, to_cell, undo=False):
-        fill_color = "grey "if undo else "red"
+        fill_color = "grey" if undo else "red"
 
         half_length = abs(self._x2 - self._x1) // 2
         x1_center = self._x1 + half_length
@@ -49,4 +49,3 @@ class Cell:
         y2_center = to_cell._y1 + half_length2
 
         self._win.draw_line(Line(Point(x1_center, y1_center), Point(x2_center, y2_center)), fill_color)
-
